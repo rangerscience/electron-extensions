@@ -1,6 +1,7 @@
 const { app, BrowserWindow } = require('electron')
+const ECx = require('electron-chrome-extension')
 
-function createWindow () {
+async function createWindow () {
   // Create the browser window.
   let win = new BrowserWindow({
     width: 800,
@@ -15,7 +16,9 @@ function createWindow () {
 
   win.webContents.openDevTools()
 
-  BrowserWindow.addExtension("./vendor/hello_world/0.0.1")
+  //BrowserWindow.addExtension("./vendor/hello_world/0.0.1")
+
+  await ECx.load('kbfnbcaeplbcioakkpcpgfkobkghlhen');
 }
 
 app.on('ready', createWindow)

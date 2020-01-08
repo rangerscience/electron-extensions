@@ -7,5 +7,8 @@
   },
   "scripts": {
     "start": "electron ."
+  },
+  "dependencies": {
+    "electron-chrome-extension": "^4.0.3"
   }
 }
