@@ -9,6 +9,7 @@
     "start": "electron ."
   },
   "dependencies": {
-    "electron-chrome-extension": "^4.0.3"
+    "electron-chrome-extension": "^4.0.3",
+    "tslib": "^1.10.0"
   }
 }
