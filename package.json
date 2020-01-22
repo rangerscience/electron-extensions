@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "electron-context-menu": "^0.15.2",
+    "electron-store": "^5.1.0",
     "trace-error": "^1.0.3"
   }
 }

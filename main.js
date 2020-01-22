@@ -1,6 +1,6 @@
 const { app, BrowserWindow } = require('electron')
 
-const { config, RegisterFileProtocol, LoadExtension } = require("./lib/extensions.js")
+const { config, RegisterFileProtocol, LoadExtension } = require("./lib/extensions")
 // const { config, Preload } = require("./lib/extensions-preload.js")
 
 const { getAllWebContents } = process.electronBinding('web_contents')
@@ -21,16 +21,19 @@ function createWindow () {
     }
   })
 
-  win.loadFile('index.html')
+  //win.loadURL('https://www.reddit.com/r/rational/submit')
+  win.loadURL('https://drive.google.com/drive/u/0/my-drive')
 
   win.webContents.openDevTools()
 
-  const path = Path.join(__dirname, "vendor/hello_world/0.0.1/")
-  const manifest = config.parseManifest("vendor/hello_world/0.0.1/")
-  const html = config.getBackgroundHTML(manifest)
+  // const path = Path.join(__dirname, "vendor/hello_world/0.0.1/")
+  // const manifest = config.parseManifest("vendor/hello_world/0.0.1/")
+  // const html = config.getBackgroundHTML(manifest)
 
-  // TODO: "matches"
   const injectHelloWorld = LoadExtension("vendor/hello_world/0.0.1/")
+  injectHelloWorld(win)
+
+  const injectGDocs = LoadExtension("vendor/gdocs/1.9_1/", 'ghbmnnjooekpmoecnnnilnnbdlolhkhi')
   injectHelloWorld(win)
 
   //console.log(html)
