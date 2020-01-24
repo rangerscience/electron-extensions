@@ -15,5 +15,10 @@
     "jest": "^25.1.0",
     "trace-error": "^1.0.3",
     "uuid": "^3.4.0"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^electron$": "<rootDir>/test/mocks/electron.js"
+    }
   }
 }
