@@ -176,7 +176,7 @@ describe("api", () => {
   })
 
   describe("usage", () => {
-    test("single alarms trigger once", () => {
+    test("single alarms trigger once", (done) => {
       const api = new AlarmsApi()
       const alarm = _.singleAlarm()
 
@@ -190,7 +190,7 @@ describe("api", () => {
       api.create(alarm.name, alarm)
     })
 
-    test("periodic alarms trigger more than once", () => {
+    test("periodic alarms trigger more than once", (done) => {
       const api = new AlarmsApi()
 
       var triggered = false
