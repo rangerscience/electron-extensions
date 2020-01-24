@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, protocol, session } = require('electron')
 
 const { config, RegisterFileProtocol, LoadExtension } = require("./lib/extensions")
 // const { config, Preload } = require("./lib/extensions-preload.js")
@@ -20,6 +20,9 @@ function createWindow () {
       preload: Path.join(__dirname, "lib/extensions-preload.js"),
     }
   })
+
+  //console.log("sess", win.webContents.session === session.defaultSession)
+  console.log("win sess protocol", win.webContents.session.protocol.isProtocolHandled('chrome-extension'))
 
   //win.loadURL('https://www.reddit.com/r/rational/submit')
   win.loadURL('https://drive.google.com/drive/u/0/my-drive')
