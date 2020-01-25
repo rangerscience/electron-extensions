@@ -51,7 +51,7 @@ describe("newStore", () => {
     const store = config.newStore("newStore.get-error")
     const callback = jest.fn()
 
-    store.set({nil: () => {}})
+    expect(() => store.set({nil: () => {}})).toThrow()
 
 
     store._store.clear() // make sure it's clean for the next test run
