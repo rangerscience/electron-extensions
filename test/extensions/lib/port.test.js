@@ -38,7 +38,7 @@ function hasPortEnvelopeInformation(port, message) {
     )
 
     test("extensionId from the port", () =>
-      expect(message.envelope.extensionId).toBe(port.extensionId)
+      expect(message.envelope.extensionId).toBe(_.portInfo.extensionId)
     )
   }
 }
@@ -85,7 +85,7 @@ describe("ConnectMessageFor", () => {
   )
 
   test( "payload is the port name", () =>
-    expect(message.payload).toBe(_.port.name)
+    expect(message.payload).toBe(_.portInfo.name)
   )
 })
 
@@ -108,7 +108,7 @@ describe("disconnectMessageFor", () => {
   )
 
   test( "payload is the port name", () =>
-    expect(message.payload).toBe(_.port.name)
+    expect(message.payload).toBe(_.portInfo.name)
   )
 })
 
@@ -217,7 +217,7 @@ describe("Port", () => {
     test("port cannot be disconnected", () => {
       port.disconnect()
       expect(ipcRenderer.removeListener).not.toHaveBeenNthCalledWith(
-        2, port.ipcChannel, config.disconnectMessageFor(port)
+        2, _.portInfo.ipcChannel, config.disconnectMessageFor(port)
       )
     })
   })
@@ -245,7 +245,7 @@ describe("Port", () => {
 
     test("disconnect message is sent", () => {
       expect(ipcRenderer.send).toHaveBeenCalledWith(
-        port.ipcChannel, config.disconnectMessageFor(port)
+        _.portInfo.ipcChannel, config.disconnectMessageFor(port)
       )
     })
   })
@@ -262,6 +262,6 @@ describe("Port", () => {
     port.postMessage(_.payload)
 
     expect(ipcRenderer.send)
-      .toHaveBeenCalledWith(port.ipcChannel, port._buildMessage(_.payload))
+      .toHaveBeenCalledWith(_.portInfo.ipcChannel, port._buildMessage(_.payload))
   })
 })
