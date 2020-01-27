@@ -60,7 +60,7 @@ describe("connect", () => {
       const port = connect(_.ipcChannel, connectionInfo)
 
       test("port is created", () => {
-        expect(port).toBe(expect.any(Port))
+        expect(port).toBeInstanceOf(Port)
       })
 
       test("connect message is sent", () => {
@@ -147,7 +147,7 @@ describe("background page api", () => {
   const api = new RuntimeApi(_.ipcChannel, manifest)
 
   test("can connect", () => {
-    expect(() => api.connect("otherExtension")).not.toThrow()
+    expect(() => api.connect("otherExtension", {name: "other"})).not.toThrow()
   })
 
   test("can receive external messages", () => {
@@ -167,7 +167,7 @@ describe("web page api", () => {
   const api = new RuntimeApi(_.ipcChannel)
 
   test("can connect", () => {
-    expect(() => api.connect("otherExtension")).not.toThrow()
+    expect(() => api.connect("otherExtension", {name: "other"})).not.toThrow()
   })
 
   test("cannot receive external messages", () => {
@@ -179,6 +179,6 @@ describe("web page api", () => {
   })
 
   test("cannot return the manifest", () => {
-    expect(api.getManifest()).toBeUndefined()
+    expect(api.getManifest).toBeUndefined()
   })
 })
