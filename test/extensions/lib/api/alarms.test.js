@@ -1,5 +1,5 @@
-const { config, AlarmsApi } = require("../../../lib/extensions/api/alarms.js")
-const { Event } = require("../../../lib/extensions/lib/event.js")
+const { config, AlarmsApi } = require("../../../../lib/extensions/lib/api/alarms.js")
+const { Event } = require("../../../../lib/extensions/lib/event.js")
 
 const _ = {
   singleAlarm: () => {return {

@@ -1,6 +1,6 @@
 const { ipcRenderer } = require('electron');
-const { Port } = require("../../../lib/extensions/lib/port.js")
-const { config, RuntimeApi } = require("../../../lib/extensions/api/runtime.js")
+const { Port } = require("../../../../lib/extensions/lib/port.js")
+const { config, RuntimeApi } = require("../../../../lib/extensions/lib/api/runtime.js")
 
 // todo: is there a way to add symbols to the calling scope?
 // yes - with(syms, () => test("test name", () => {}))

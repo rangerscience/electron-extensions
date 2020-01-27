@@ -1,6 +1,6 @@
 const Path = require('path')
 
-const { config, StorageApi } = require("../../../lib/extensions/api/storage.js")
+const { config, StorageApi } = require("../../../../lib/extensions/lib/api/storage.js")
 
 const _ = {}
 
