@@ -88,28 +88,70 @@ describe("responder", () => {
 describe("IpcRouter", () => {
   test("it new's", () => {
     const { backgroundWindow, contentWindows } = fixtures()
-    expect(new IpcRouter(ipcChannel, manifest, backgroundWindow, contentWindows))
+    expect(new IpcRouter(ipcChannel, manifest, backgroundWindow))
   })
 
   describe("instance", () => {
     const { backgroundWindow, contentWindows } = fixtures()
-    const responder = jest.fn()
     const og_responderBuilder = config.responderBuilder
-    config.responderBuilder = () => responder
-    const router = new IpcRouter(ipcChannel, manifest, backgroundWindow, contentWindows)
 
     test("responder is added to ipcMain", () => {
-      expect(ipcMain.on).toHaveBeenCalledWith(ipcChannel, responder)
+      const responder = jest.fn()
+      config.responderBuilder = jest.fn(() => responder)
+      const router = new IpcRouter(ipcChannel, manifest, backgroundWindow, contentWindows)
+
+      expect(ipcMain.on).toHaveBeenCalledWith(ipcChannel, expect.anything())
+
+      config.responderBuilder = og_responderBuilder
     })
 
-    test("message gets sent to responder", () => {
+    test("responder is updated with new windows", () => {
+      const responder = jest.fn()
+      config.responderBuilder = jest.fn(() => responder)
+      const router = new IpcRouter(ipcChannel, manifest, backgroundWindow, contentWindows)
+
+      router.addContentWindows(contentWindows)
+
+      expect(config.responderBuilder).toHaveBeenCalledWith(
+        ipcChannel,
+        new Set([].concat([backgroundWindow], contentWindows)),
+        manifest
+      )
+
+      config.responderBuilder = og_responderBuilder
+    })
+
+    test("message gets forwarded to responder", () => {
+      const responder = jest.fn()
+      config.responderBuilder = jest.fn(() => responder)
+      const router = new IpcRouter(ipcChannel, manifest, backgroundWindow, contentWindows)
+      router.addContentWindow(contentWindows[0]) // todo: add a test for just this part
+
       const message = { envelope: { extensionId: "extensionId" } }
 
       ipcMain.send(ipcChannel, message)
 
       expect(responder).toHaveBeenCalledWith({}, message)
+
+      config.responderBuilder = og_responderBuilder
     })
 
-    config.responderBuilder = og_responderBuilder
+    test("window can be removed", () => {
+      const responder = jest.fn()
+      config.responderBuilder = jest.fn(() => responder)
+      const router = new IpcRouter(ipcChannel, manifest, backgroundWindow, contentWindows)
+
+      router.addContentWindows(contentWindows)
+      router.removeContentWindow(contentWindows[0])
+
+      expect(config.responderBuilder).toHaveBeenCalledWith(
+        ipcChannel,
+        new Set([].concat([backgroundWindow])), // TODO: contentWindows.split...
+        manifest
+      )
+
+
+      config.responderBuilder = og_responderBuilder
+    })
   })
 })

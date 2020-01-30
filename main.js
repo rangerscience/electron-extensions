@@ -1,6 +1,6 @@
 const { app, BrowserWindow, protocol, session } = require('electron')
 
-const { config, RegisterFileProtocol, LoadExtension } = require("./lib/extensions")
+const { LoadExtension } = require("./lib/extensions").Root(__dirname)
 // const { config, Preload } = require("./lib/extensions-preload.js")
 
 const { getAllWebContents } = process.electronBinding('web_contents')
@@ -8,7 +8,6 @@ const { getAllWebContents } = process.electronBinding('web_contents')
 const Path = require("path")
 
 function createWindow () {
-  RegisterFileProtocol(__dirname)
 
   // Create the browser window.
   let win = new BrowserWindow({
