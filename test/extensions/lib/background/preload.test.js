@@ -10,8 +10,8 @@ _.manifest = {
 }
 
 test("can get extension ID from process args", () => {
-  process.argv.push("extensionId=extensionId")
-  expect(config.getExtensionid()).toBe("extensionId")
+  process.argv.push("--extensionId=extensionId")
+  expect(config.getExtensionId()).toBe("extensionId")
 })
 
 test("can fetch manifest", () => {
@@ -31,9 +31,9 @@ test("can fetch manifest", () => {
 describe("ExtensionInit", () => {
   process.once = jest.fn( (event, callback) => callback() )
 
-  const og_getExtensionId = config.getExtensionid
+  const og_getExtensionId = config.getExtensionId
   const og_fetchManifest = config.fetchManifest
-  config.getExtensionid = () => "extensionId"
+  config.getExtensionId = () => "extensionId"
   config.fetchManifest = () => _.manifest
 
   test("injects chrome api", () => {

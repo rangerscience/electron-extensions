@@ -22,9 +22,6 @@ function createWindow () {
     }
   })
 
-  //console.log("sess", win.webContents.session === session.defaultSession)
-  console.log("win sess protocol", win.webContents.session.protocol.isProtocolHandled('chrome-extension'))
-
   //win.loadURL('https://www.reddit.com/r/rational/submit')
   win.loadURL('https://drive.google.com/drive/u/0/my-drive')
 
@@ -34,7 +31,7 @@ function createWindow () {
   // const manifest = config.parseManifest("vendor/hello_world/0.0.1/")
   // const html = config.getBackgroundHTML(manifest)
 
-  const injectHelloWorld = LoadExtension("vendor/hello_world/0.0.1/")
+  const injectHelloWorld = LoadExtension("vendor/hello_world/0.0.1/", "helloWorldExtension")
   injectHelloWorld(win)
 
   const injectGDocs = LoadExtension("vendor/gdocs/1.9_1/", 'ghbmnnjooekpmoecnnnilnnbdlolhkhi')
