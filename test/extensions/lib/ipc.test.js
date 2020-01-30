@@ -28,7 +28,7 @@ describe("responder", () => {
     const backgroundWindow = new BrowserWindow()
     const contentWindows = [new BrowserWindow()]
 
-    expect(() => config.responder(ipcChannel, backgroundWindow, contentWindows, manifest)).not.toThrow()
+    expect(() => config.responderBuilder(ipcChannel, backgroundWindow, contentWindows, manifest)).not.toThrow()
   })
 
   describe("responder", () => {
@@ -94,15 +94,22 @@ describe("IpcRouter", () => {
   describe("instance", () => {
     const { backgroundWindow, contentWindows } = fixtures()
     const responder = jest.fn()
-    config.responder = () => responder
+    const og_responderBuilder = config.responderBuilder
+    config.responderBuilder = () => responder
     const router = new IpcRouter(ipcChannel, manifest, backgroundWindow, contentWindows)
 
-    test("message gets sent to responder", () => {
-      const message = {}
+    test("responder is added to ipcMain", () => {
+      expect(ipcMain.on).toHaveBeenCalledWith(ipcChannel, responder)
+    })
 
-      ipcMain.send("ipcChannel", message)
+    test("message gets sent to responder", () => {
+      const message = { envelope: { extensionId: "extensionId" } }
+
+      ipcMain.send(ipcChannel, message)
 
       expect(responder).toHaveBeenCalledWith({}, message)
     })
+
+    config.responderBuilder = og_responderBuilder
   })
 })

@@ -14,11 +14,10 @@ test("newBackgroundWindow produces a window", () => {
   expect(config.newBackgroundWindow(manifest)).toBeInstanceOf(BrowserWindow)
 })
 
-// Running into issues mocking this properly
-// test("addDevTools opens devTools on window", () => {
-//   const window = new BrowserWindow()
-//   expect(config.addDevTools(window)).not.toThrow()
-// })
+test("addDevTools opens devTools on window", () => {
+  const window = new BrowserWindow()
+  expect(() => config.addDevTools(window)).not.toThrow()
+})
 
 describe("getBackgroundHTML", () =>{
   test("with background page returns slurped page", () => {
@@ -43,5 +42,29 @@ describe("LaunchBackgroundPage", () => {
 
   test("launches a window", () => {
     expect(LaunchBackgroundPage(_manifest)).toBeInstanceOf(BrowserWindow)
+  })
+
+  test("it adds dev tools if IS_DEV", () => {
+    const og_addDevTools = config.addDevTools
+    config.addDevTools = jest.fn()
+    process.env.IS_DEV = true
+
+    LaunchBackgroundPage(_manifest)
+
+    expect(config.addDevTools).toHaveBeenCalled()
+
+    config.addDevTools = og_addDevTools
+  })
+
+  test("it does not add dev tools if !IS_DEV", () => {
+    const og_addDevTools = config.addDevTools
+    config.addDevTools = jest.fn()
+    delete process.env.IS_DEV
+
+    LaunchBackgroundPage(_manifest)
+
+    expect(config.addDevTools).not.toHaveBeenCalled()
+
+    config.addDevTools = og_addDevTools
   })
 })

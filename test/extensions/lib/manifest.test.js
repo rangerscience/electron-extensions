@@ -21,9 +21,9 @@ describe("ReadManifest", () => {
     ).toThrow()
   })
 
-  test("it errors when bad source directory", () => {
+  test("it errors when bad manifest", () => {
     expect(
-      () => ReadManifest("nonsense/path")
+      () => ReadManifest(Path.join(__dirname, "manifest.test.js"), "extensionId")
     ).toThrow()
   })
 })

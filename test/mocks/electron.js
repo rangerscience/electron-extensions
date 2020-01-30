@@ -8,18 +8,18 @@ _.mockEvent = {}
 
 class MockIpcRenderer{
   constructor(){
-    const channels = {}
     Object.assign(this, {
+      channels: {},
       on: jest.fn((channel, handler) => {
-        if( !channels[channel] ) { channels[channel] = new Event() }
+        if( !this.channels[channel] ) { this.channels[channel] = new Event() }
 
-        channels[channel].addListener(handler)
+        this.channels[channel].addListener(handler)
       }),
 
       send: jest.fn((channel, message) => {
-        if(!channels[channel] ) { return }
+        if(!this.channels[channel] ) { return }
 
-        channels[channel].emit(_.mockEvent, message)
+        this.channels[channel].emit(_.mockEvent, message)
       }),
 
       _sendSyncResponse: "response",
@@ -29,9 +29,9 @@ class MockIpcRenderer{
       }),
 
       removeListener: jest.fn((channel, handler) => {
-        if(! channels[channel] ) { return }
+        if(! this.channels[channel] ) { return }
 
-        channels[channel].removeListener(handler)
+        this.channels[channel].removeListener(handler)
       })
     })
   }
@@ -40,17 +40,17 @@ class MockIpcRenderer{
 // TODO:Copypasta
 class MockIpcMain {
   constructor() {
-    const channels = {}
     Object.assign(this, {
+      channels: {},
       on: jest.fn((channel, handler) => {
-        if( !channels[channel] ) { channels[channel] = new Event() }
+        if( !this.channels[channel] ) { this.channels[channel] = new Event() }
 
-        channels[channel].addListener(handler)
+        this.channels[channel].addListener(handler)
       }),
       send: jest.fn((channel, message) => {
-        if(!channels[channel] ) { return }
+        if(!this.channels[channel] ) { return }
 
-        channels[channel].emit(_.mockEvent, message)
+        this.channels[channel].emit(_.mockEvent, message)
       }),
     })
   }
@@ -63,7 +63,9 @@ class MockBrowserWindow {
       openDevTools: jest.fn(),
       executeJavaScript: jest.fn(),
       send: jest.fn(),
-      on: (_event, callback) => callback(),
+      on: (event, callback) => {
+        if(event != 'context-menu') { callback() }
+      },
     }
 
     this.loadURL = jest.fn()
@@ -77,12 +79,18 @@ class MockProtocol {
   }
 }
 
+Object.assign(_, {
+  MockIpcRenderer,
+  MockIpcMain,
+  MockBrowserWindow,
+  MockProtocol
+})
+
 module.exports = {
+  config: _,
   app: { getPath: jest.fn().mockReturnValue('tmp/') },
   ipcRenderer: new MockIpcRenderer(),
   ipcMain: new MockIpcMain(),
   BrowserWindow: MockBrowserWindow,
-  protocol: new MockProtocol(),
-
-  //BrowserWindow: _.app.electron.BrowserWindow
+  protocol: new MockProtocol()
 }
