@@ -1,44 +1,88 @@
-// TODO: Load real electron?
+const Path = require("path")
 
 const { Event } = require("../../lib/extensions/lib/event.js")
 
 const _ = {}
 
 _.mockEvent = {}
-_.channels = {}
 
 class MockIpcRenderer{
   constructor(){
+    const channels = {}
     Object.assign(this, {
       on: jest.fn((channel, handler) => {
-        if( !_.channels[channel] ) { _.channels[channel] = new Event() }
+        if( !channels[channel] ) { channels[channel] = new Event() }
 
-        _.channels[channel].addListener(handler)
+        channels[channel].addListener(handler)
       }),
 
       send: jest.fn((channel, message) => {
-        if(! _.channels[channel] ) { return }
+        if(!channels[channel] ) { return }
 
-        _.channels[channel].emit(_.mockEvent, message)
+        channels[channel].emit(_.mockEvent, message)
       }),
 
       _sendSyncResponse: "response",
 
       sendSync: jest.fn((...args) => {
-        console.log("sendSync called", )
         return this._sendSyncResponse
       }),
 
       removeListener: jest.fn((channel, handler) => {
-        if(! _.channels[channel] ) { return }
+        if(! channels[channel] ) { return }
 
-        _.channels[channel].removeListener(handler)
+        channels[channel].removeListener(handler)
       })
     })
   }
 }
 
+// TODO:Copypasta
+class MockIpcMain {
+  constructor() {
+    const channels = {}
+    Object.assign(this, {
+      on: jest.fn((channel, handler) => {
+        if( !channels[channel] ) { channels[channel] = new Event() }
+
+        channels[channel].addListener(handler)
+      }),
+      send: jest.fn((channel, message) => {
+        if(!channels[channel] ) { return }
+
+        channels[channel].emit(_.mockEvent, message)
+      }),
+    })
+  }
+}
+
+class MockBrowserWindow {
+  constructor(...args) {
+    Object.assign(this, args)
+    this.webContents = {
+      openDevTools: jest.fn(),
+      executeJavaScript: jest.fn(),
+      send: jest.fn(),
+      on: (_event, callback) => callback(),
+    }
+
+    this.loadURL = jest.fn()
+  }
+}
+
+class MockProtocol {
+  constructor() {
+    this.registerFileProtocol = jest.fn()
+    this.interceptFileProtocol = jest.fn()
+  }
+}
+
 module.exports = {
   app: { getPath: jest.fn().mockReturnValue('tmp/') },
-  ipcRenderer: new MockIpcRenderer()
+  ipcRenderer: new MockIpcRenderer(),
+  ipcMain: new MockIpcMain(),
+  BrowserWindow: MockBrowserWindow,
+  protocol: new MockProtocol(),
+
+  //BrowserWindow: _.app.electron.BrowserWindow
 }

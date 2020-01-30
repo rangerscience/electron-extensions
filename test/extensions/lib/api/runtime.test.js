@@ -23,9 +23,11 @@ _.connectMessage = {
   envelope: {
     extensionId: _.extensionId,
     eventType: "connect_external",
-    portId: "portId"
   },
-  payload: "portName"
+  payload: {
+    portName: "portName",
+    portId: "portId"
+  }
 }
 
 _.differentExtensionMessage = {
@@ -130,12 +132,16 @@ describe("external connect messages", () => {
       expect(listener).not.toHaveBeenCalledWith(_.differentExtensionMessage)
     })
 
+    test("ignores messages for ports", () => {
+      expect(listener).not.toHaveBeenCalledWith(_.portMessage)
+    })
+
     test("sends new port to listeners", () => {
       const portInfo = {
         ipcChannel: _.ipcChannel,
         extensionId: _.extensionId,
-        name: _.connectMessage.payload,
-        portId: _.connectMessage.envelope.portId
+        name: _.connectMessage.payload.portName,
+        portId: _.connectMessage.payload.portId
       }
       expect(listener).toHaveBeenCalledWith(expect.objectContaining(portInfo))
     })

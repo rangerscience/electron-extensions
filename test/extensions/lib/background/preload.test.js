@@ -37,7 +37,7 @@ describe("ExtensionInit", () => {
   config.fetchManifest = () => _.manifest
 
   test("injects chrome api", () => {
-    ExtensionInit()
+    ExtensionInit("ipcChannel")
     expect(global.chrome).toBeDefined()
   })
 

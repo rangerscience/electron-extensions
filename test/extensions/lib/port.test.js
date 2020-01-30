@@ -72,8 +72,12 @@ describe("ConnectMessageFor", () => {
 
   const message = ConnectMessageFor(_.port)
 
-  describe( "envelope",
-    hasPortEnvelopeInformation(_.port, message)
+  test("has envelope information", () =>
+    expect(message).toHaveProperty("envelope")
+  )
+
+  test("extensionId from the port", () =>
+    expect(message.envelope.extensionId).toBe(_.portInfo.extensionId)
   )
 
   test( "message type is connect_external", () =>
@@ -84,8 +88,12 @@ describe("ConnectMessageFor", () => {
     expect(message).toHaveProperty("payload")
   )
 
-  test( "payload is the port name", () =>
-    expect(message.payload).toBe(_.portInfo.name)
+  test( "payload has the port name", () =>
+    expect(message.payload.portName).toBe(_.portInfo.name)
+  )
+
+  test( "payload has the port id", () =>
+    expect(message.payload).toHaveProperty("portId")
   )
 })
 

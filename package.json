@@ -13,6 +13,7 @@
     "electron-context-menu": "^0.15.2",
     "electron-store": "^5.1.0",
     "jest": "^25.1.0",
+    "spectron": "^10.0.0",
     "trace-error": "^1.0.3",
     "uuid": "^3.4.0"
   },

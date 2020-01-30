@@ -1,5 +1,5 @@
 const { ipcRenderer } = require('electron');
-const { Injector, NewChromeApi } = require("../../../lib/extensions/lib/chrome_api.js")
+const { NewChromeApi } = require("../../../lib/extensions/lib/chrome_api.js")
 
 const _ = {}
 
@@ -24,26 +24,6 @@ describe("preload for background pages", () => {
 
     test("has an alarms api", () => {
       expect(api.alarms).toBeDefined()
-    })
-  })
-
-  test("injector curries", () => {
-    expect(Injector(_.ipcChannel, manifest)).not.toThrow()
-  })
-
-  describe("injection function", () => {
-    const api = NewChromeApi(_.ipcChannel, manifest)
-    const injector = Injector(api)
-
-    test("it injects the api into the target", () => {
-      const _global = { chrome: {} }
-
-      injector(_global.chrome)
-
-      // TODO: This is not currently testable
-      // expect(_global.chrome.storage).toBeDefined()
-      // expect(_global.chrome.runtime).toBeDefined()
-      // expect(_global.chrome.alarms).toBeDefined()
     })
   })
 })
