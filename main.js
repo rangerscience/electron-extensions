@@ -35,7 +35,7 @@ function createWindow () {
   injectHelloWorld(win)
 
   const injectGDocs = LoadExtension("vendor/gdocs/1.9_1/", 'ghbmnnjooekpmoecnnnilnnbdlolhkhi')
-  injectHelloWorld(win)
+  injectGDocs(win)
 
   //console.log(html)
 
