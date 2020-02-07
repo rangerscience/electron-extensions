@@ -29,6 +29,13 @@ describe("mock IPC responder", () => {
       expect(() => ipc.removeListener("channel", jest.fn())).not.toThrow()
     })
   })
+
+  describe("invoke", () => {
+    test("it returns a promise", () => {
+      const ipc = new config.MockIpcRenderer()
+      expect(ipc.invoke("channel")).resolves.toBe(ipc._invokeResponse)
+    })
+  })
 })
 
 describe("mock IPC main", () => {

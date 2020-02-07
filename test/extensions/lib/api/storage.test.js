@@ -42,7 +42,7 @@ describe("newStore", () => {
     store.set(_.data)
     store.get(["key1"], callback)
 
-    expect(callback).toHaveBeenCalledWith([_.data.key1])
+    expect(callback).toHaveBeenCalledWith({"key1": _.data.key1})
 
     store._store.clear() // make sure it's clean for the next test run
   })

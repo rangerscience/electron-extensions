@@ -143,7 +143,7 @@ describe("api", () => {
         done()
       }
 
-      api.onAlarm(listener)
+      api.onAlarm.addListener(listener)
       api.create(alarm.name, alarm)
     })
   })
@@ -186,7 +186,7 @@ describe("api", () => {
         done()
       }
 
-      api.onAlarm(listener)
+      api.onAlarm.addListener(listener)
       api.create(alarm.name, alarm)
     })
 
@@ -203,7 +203,7 @@ describe("api", () => {
         done()
       }
 
-      api.onAlarm(listener)
+      api.onAlarm.addListener(listener)
       api.create(_.periodicAlarm().name, _.periodicAlarm())
     })
   })

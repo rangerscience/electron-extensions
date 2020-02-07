@@ -32,7 +32,11 @@ class MockIpcRenderer{
         if(! this.channels[channel] ) { return }
 
         this.channels[channel].removeListener(handler)
-      })
+      }),
+
+      _invokeResponse: "invokeResponse",
+
+      invoke: jest.fn(() => Promise.resolve(this._invokeResponse))
     })
   }
 }
@@ -62,6 +66,7 @@ class MockBrowserWindow {
     this.webContents = {
       openDevTools: jest.fn(),
       executeJavaScript: jest.fn(),
+      executeJavaScriptInIsolatedWorld: jest.fn(),
       send: jest.fn(),
       on: (event, callback) => {
         if(event != 'context-menu') { callback() }
@@ -79,11 +84,18 @@ class MockProtocol {
   }
 }
 
+class MockRemote {
+  constructor() {
+    this.getCurrentWindow = jest.fn(() => {return {id: 1} })
+  }
+}
+
 Object.assign(_, {
   MockIpcRenderer,
   MockIpcMain,
   MockBrowserWindow,
-  MockProtocol
+  MockProtocol,
+  MockRemote
 })
 
 module.exports = {
@@ -92,5 +104,6 @@ module.exports = {
   ipcRenderer: new MockIpcRenderer(),
   ipcMain: new MockIpcMain(),
   BrowserWindow: MockBrowserWindow,
-  protocol: new MockProtocol()
+  protocol: new MockProtocol(),
+  remote: new MockRemote()
 }

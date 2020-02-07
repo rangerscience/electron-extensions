@@ -68,7 +68,7 @@ describe("parseContentScripts", () => {
 
   describe("with no content scripts", () => {
     const manifest = {
-      getExtensionId: "extensionId",
+      extensionId: "extensionId",
       srcDirectory: Path.join(__dirname, "../../../fixtures/extension"),
     }
 
@@ -79,7 +79,7 @@ describe("parseContentScripts", () => {
 
   describe("with content scripts", () => {
     const manifest = {
-      getExtensionId: "extensionId",
+      extensionId: "extensionId",
       srcDirectory: Path.join(__dirname, "../../../fixtures/extension"),
       content_scripts: [{
         matches: ["<all_urls>"],
@@ -107,7 +107,7 @@ describe("parseContentScripts", () => {
 
 describe("InjectExtensionBuilder", () => {
   const manifest = {
-    getExtensionId: "extensionId",
+    extensionId: "extensionId",
     srcDirectory: Path.join(__dirname, "../../../fixtures/extension"),
     content_scripts: [{
       matches: [ "*" ],
@@ -124,19 +124,26 @@ describe("InjectExtensionBuilder", () => {
     const injector = InjectExtensionBuilder(manifest)
 
     test("injects scripts when URL matches", () => {
+      const worldId = config.getWorldId(manifest.extensionId) // TODO: Mock
       const window = new BrowserWindow()
       window.webContents.getURL = () => "https://google.com"
 
-      injector(window)
+      injector(window.webContents)
 
-      expect(window.webContents.executeJavaScript).toHaveBeenCalled()
+      expect(window.webContents.executeJavaScriptInIsolatedWorld).toHaveBeenCalledWith(
+        worldId, `EXTENSION_ID = ${manifest.extensionId}`
+      )
+
+      expect(window.webContents.executeJavaScriptInIsolatedWorld).toHaveBeenCalledWith(
+        worldId, expect.any(String)
+      )
     })
 
     test("does not injects scripts when does not URL matches", () => {
       const window = new BrowserWindow()
       window.webContents.getURL = () => "https://docs.google.com/some/path"
 
-      injector(window)
+      injector(window.webContents)
 
       expect(window.webContents.executeJavaScript).not.toHaveBeenCalled()
     })

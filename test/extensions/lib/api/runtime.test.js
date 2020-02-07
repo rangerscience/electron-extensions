@@ -6,6 +6,7 @@ const { config, RuntimeApi } = require("../../../../lib/extensions/lib/api/runti
 // yes - with(syms, () => test("test name", () => {}))
 // wait - no, not quite. but maybe? worth playing with at some point
 
+let EXTENSION_ID // This is kludge for some content script stuff
 const _ = {}
 
 _.ipcChannel = "ipcChannel"
@@ -146,6 +147,16 @@ describe("external connect messages", () => {
       expect(listener).toHaveBeenCalledWith(expect.objectContaining(portInfo))
     })
   })
+})
+
+describe("sendMessage", () => {
+  test.todo("uses the world's EXTENSION_ID")
+  test.todo("sends an external message")
+})
+
+describe("onMessage", () => {
+  test.todo("uses the world's EXTENSION_ID")
+  test.todo("sends an external message")
 })
 
 describe("background page api", () => {

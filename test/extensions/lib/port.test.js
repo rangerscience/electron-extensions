@@ -173,7 +173,7 @@ describe("Port", () => {
 
     ipcRenderer.send(port.ipcChannel, message)
 
-    expect(listener).toHaveBeenCalledWith(message.payload, port) // todo: double-check the docs
+    expect(listener).toHaveBeenCalledWith(message.payload, port)
   })
 
   test("can add disconnect listeners", () => {
