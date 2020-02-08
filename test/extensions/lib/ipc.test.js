@@ -4,9 +4,8 @@ const { config, IpcRouter } = require("../../../lib/extensions/lib/ipc.js")
 const ipcChannel = "ipcChannel"
 
 const manifest = {
-  srcDirectory: "TODO",
+  srcDirectory: "srcDirectory",
   extensionId: "extensionId"
-  // TODO: more?
 }
 
 function fixtures() {
@@ -125,7 +124,7 @@ describe("IpcRouter", () => {
       const responder = jest.fn()
       config.responderBuilder = jest.fn(() => responder)
       const router = new IpcRouter(ipcChannel, manifest, backgroundWindow, contentWindows)
-      router.addContentWindow(contentWindows[0]) // todo: add a test for just this part
+      router.addContentWindow(contentWindows[0])
 
       const message = { envelope: { extensionId: "extensionId" } }
 
@@ -146,10 +145,9 @@ describe("IpcRouter", () => {
 
       expect(config.responderBuilder).toHaveBeenCalledWith(
         ipcChannel,
-        new Set([].concat([backgroundWindow])), // TODO: contentWindows.split...
+        new Set([].concat([backgroundWindow])),
         manifest
       )
-
 
       config.responderBuilder = og_responderBuilder
     })

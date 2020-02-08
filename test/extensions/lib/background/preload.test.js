@@ -6,7 +6,6 @@ const _ = {}
 
 _.manifest = {
   extensionId: "extensionId",
-  // TODO: More?
 }
 
 test("can get extension ID from process args", () => {

@@ -124,7 +124,7 @@ describe("InjectExtensionBuilder", () => {
     const injector = InjectExtensionBuilder(manifest)
 
     test("injects scripts when URL matches", () => {
-      const worldId = config.getWorldId(manifest.extensionId) // TODO: Mock
+      const worldId = config.getWorldId(manifest.extensionId)
       const window = new BrowserWindow()
       window.webContents.getURL = () => "https://google.com"
 

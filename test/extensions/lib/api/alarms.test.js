@@ -22,7 +22,7 @@ const _ = {
 }
 
 _.getFixtures = () => {
-  const emitter = new Event() // TODO: Mock?
+  const emitter = new Event()
   const alarmDictionary = {}
   const createAlarm = config.createAlarmBuilder(emitter, alarmDictionary)
   const clearAlarm = config.clearAlarmBuilder(alarmDictionary)
@@ -153,7 +153,7 @@ describe("api", () => {
       const api = new AlarmsApi()
 
       api.create(_.singleAlarm.name, _.singleAlarm)
-      // This is otherwise quite well tested / TODO: move those tests here
+      // This is otherwise quite well tested
     })
   })
 
@@ -162,7 +162,7 @@ describe("api", () => {
       const api = new AlarmsApi()
 
       api.get(_.singleAlarm.name, () => {})
-      // This is otherwise quite well tested / TODO: move those tests here
+      // This is otherwise quite well tested
     })
   })
 
@@ -171,7 +171,7 @@ describe("api", () => {
       const api = new AlarmsApi()
 
       api.clear(_.singleAlarm.name, () => {})
-      // This is otherwise quite well tested / TODO: move those tests here
+      // This is otherwise quite well tested
     })
   })
 

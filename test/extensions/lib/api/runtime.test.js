@@ -2,9 +2,6 @@ const { ipcRenderer } = require('electron');
 const { Port } = require("../../../../lib/extensions/lib/port.js")
 const { config, RuntimeApi } = require("../../../../lib/extensions/lib/api/runtime.js")
 
-// todo: is there a way to add symbols to the calling scope?
-// yes - with(syms, () => test("test name", () => {}))
-// wait - no, not quite. but maybe? worth playing with at some point
 
 let EXTENSION_ID // This is kludge for some content script stuff
 const _ = {}
@@ -42,7 +39,7 @@ _.differentExtensionMessage = {
 _.portMessage = {
   envelope: {
     extensionId: _.extensionId,
-    eventType: "message_port", // TODO?
+    eventType: "message_port",
     portId: "portId"
   },
   payload: "message"
@@ -160,7 +157,10 @@ describe("onMessage", () => {
 })
 
 describe("background page api", () => {
-  const manifest = {/*TODO*/}
+  const manifest = {
+    extensionId: "extensionId"
+  }
+  
   const api = new RuntimeApi(_.ipcChannel, manifest)
 
   test("can connect", () => {

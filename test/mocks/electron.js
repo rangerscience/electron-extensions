@@ -41,7 +41,6 @@ class MockIpcRenderer{
   }
 }
 
-// TODO:Copypasta
 class MockIpcMain {
   constructor() {
     Object.assign(this, {

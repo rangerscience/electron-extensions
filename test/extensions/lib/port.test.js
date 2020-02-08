@@ -14,7 +14,7 @@ _.portInfo = {
 
 _.port = new Port(_.portInfo)
 
-_.messageEvent = {} // TODO: ipc event mock (but atm received ignores this)
+_.messageEvent = {}
 
 function curriesAndMakesNewMessages(func) {
   test("can be curried", () =>
@@ -197,7 +197,7 @@ describe("Port", () => {
     })
 
     test("disconnect listeners received notice", () => {
-      expect(listener).toHaveBeenCalled() // todo: is it called with anything?
+      expect(listener).toHaveBeenCalledWith(port) // only arg to event handler is "_this_ disconnected port"
     })
   })
 
@@ -247,7 +247,7 @@ describe("Port", () => {
       port.disconnected = true
     })
 
-    test("disconnect listeners do not receive notice", () => { // todo: do they receive the port as the message?
+    test("disconnect listeners do not receive notice", () => {
       expect(listener).not.toHaveBeenCalled()
     })
 

@@ -8,7 +8,6 @@ _.ipcChannel = "ipcChannel"
 describe("preload for background pages", () => {
   const manifest = {
     extensionId: "extensionId",
-    /*TODO: More?*/
   }
 
   describe("chromeApi", () => {
