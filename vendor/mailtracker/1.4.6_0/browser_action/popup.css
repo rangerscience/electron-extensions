@@ -1,0 +1,169 @@
+body {
+  width: 380px;
+  font-family: "Open Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 13px;
+  margin: 0;
+}
+
+::selection {
+  background: #373737;
+  color: #fff; 
+}
+
+a {
+  outline: 0;
+  text-decoration: none;
+}
+
+p {
+  margin: 10px 0 5px;
+}
+
+strong.email {
+  display: inline-block;
+  font-weight: 600;
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#header {
+  border-bottom: 1px solid #eee;
+  background: #fafafa;
+  padding: 20px;
+}
+
+.logo {
+  width: 220px;
+}
+
+#body {
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+#no-account-notification,
+#accounts-list-notification {
+  display: none;
+  padding: 10px 0;
+  line-height: 22px;
+}
+
+.subtitle {
+  display: inline-block;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 12px;
+  margin: 10px 0 0;
+  color: #aaa;
+}
+
+#accounts-link {
+  display: none;
+  padding-bottom: 15px;
+}
+
+#accounts-link a,
+#accounts-link a:hover,
+#accounts-link a:focus,
+#accounts-link a:active {
+  color: #888;
+  font-size: 12px;
+  border-bottom: 1px solid #e1e1e1;  
+  text-decoration: none;
+  transition: all 250ms ease;
+}
+
+#accounts-link a:hover {
+  border-color: #bbb;
+}
+
+.connect-link,
+.connect-link:hover,
+.connect-link:focus,
+.connect-link:active {
+  float: right;
+  font-size: 13px;
+  border-bottom: 1px solid #e1e1e1;
+  color: #888;
+  text-decoration: none;
+  transition: all 250ms ease;
+}
+
+.connect-link:hover {
+  border-color: #bbb;
+}
+
+.notifications-switcher {
+  float: right;
+  position: relative;
+  height: 22px;
+  width: 42px;
+  border-radius: 13px;
+  background: #ddd;
+  float: right;
+  cursor: pointer;
+}
+
+.notifications-selector {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  background-color: #fff;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  transition: all .2s ease-out;
+  transform: translateX(0px);
+}
+
+.notifications-switcher.active {
+  background-color: #ff5722;
+}
+
+.notifications-switcher.active .notifications-selector {
+  transform: translateX(20px);
+}
+
+.orange-btn {
+  border: 0;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 3px;
+  transition: background-color 200ms ease-in-out;
+  display: inline-block;
+  font-size: 12px;
+  padding: 12px 18px;
+  font-weight: 600;
+  background-color: #ff5722;
+  color: #fff;
+  width: calc(100% - 40px);
+  text-align: center;
+}
+
+.orange-btn:hover,
+.orange-btn:active,
+.orange-btn:focus {
+  background-color: #ee3900;
+}
+
+#cta-chrome,
+#cta-campaigns {
+  display: none;
+  background: #fafafa;
+  border-top: 1px solid #eee;
+  padding: 20px;
+}
+
+#cta p {
+  font-size: 13px;
+  margin: 10px 0 20px;
+  line-height: 21px;
+}
+
+#cta .orange-btn {
+  width: auto;
+}

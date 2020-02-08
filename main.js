@@ -16,9 +16,7 @@ function createWindow () {
     webPreferences: {
       nodeIntegration: true,
       devTools: true,
-      preloads: [
-        Path.join(__dirname, "lib/extensions/contentScripts/preload_script.js"),
-      ]
+      preload: Path.join(__dirname, "lib/extensions/lib/contentScripts/preload_script.js")
     }
   })
 
@@ -31,13 +29,24 @@ function createWindow () {
   // const manifest = config.parseManifest("vendor/hello_world/0.0.1/")
   // const html = config.getBackgroundHTML(manifest)
 
-  const injectHelloWorld = LoadExtension("vendor/hello_world/0.0.1/", "helloWorldExtension")
-  injectHelloWorld(win)
+  // const injectHelloWorld = LoadExtension("vendor/hello_world/0.0.1/", "helloWorldExtension")
+  // injectHelloWorld(win)
+  //
+  // const injectGDocs = LoadExtension("vendor/gdocs/1.9_1/", 'ghbmnnjooekpmoecnnnilnnbdlolhkhi')
+  // injectGDocs(win)
 
-  const injectGDocs = LoadExtension("vendor/gdocs/1.9_1/", 'ghbmnnjooekpmoecnnnilnnbdlolhkhi')
-  injectGDocs(win)
-
+  // const lasspass    = LoadExtension("vendor/lastpass/4.41.0.4_0/", 'hdokiejnpimakedhajhdlcegeplioahd')
+  // const clearbit    = LoadExtension("vendor/clearbit/2.1.1_0/", 'pmnhcgfcafcnkbengdcanjablaabjplo')
+  // const grammarly   = LoadExtension("vendor/grammarly/14.947.0_0/", 'kbfnbcaeplbcioakkpcpgfkobkghlhen')
+  // const zoom        = LoadExtension("vendor/zoom/1.4.48_0/", 'kgjfgplpablkjnlkjmjdecgdpfankdle')
+  // const hubspot     = LoadExtension("vendor/hubspot/2.9.0.3718_0/", 'oiiaigjnkhngdbnoookogelabohpglmd')
+  // const gmelius     = LoadExtension("vendor/gmelius/8.10_0/", 'dheionainndbbpoacpnopgmnihkcmnkl')
+  // const mailtracker = LoadExtension("vendor/mailtracker/1.4.6_0/", 'pgbdljpkijehgoacbjpolaomhkoffhnl')
+  const boomerang   = LoadExtension("vendor/boomerang/1.2.8_0/", 'mdanidgdpmkimeiiojknlnekblgmpdll')
+  // const mixmax      = LoadExtension("vendor/mixmax/4.7.3_0/", 'ocpljaamllnldhepankaeljmeeeghnid')
   //console.log(html)
+
+  boomerang(win)
 
   //config.startBackgroundPage(manifest)
 

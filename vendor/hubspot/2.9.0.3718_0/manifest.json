@@ -1,0 +1,38 @@
+{
+   "background": {
+      "page": "pages/background.html"
+   },
+   "browser_action": {
+      "default_icon": "img/hubspot-logo-bg-48.png",
+      "default_popup": "pages/popup.html"
+   },
+   "content_scripts": [ {
+      "all_frames": false,
+      "exclude_matches": [ "*://*/*.xml" ],
+      "js": [ "js/sig-ext.js" ],
+      "matches": [ "*://*.hubspot.com/*", "*://*.hubspotqa.com/*" ],
+      "run_at": "document_start"
+   }, {
+      "all_frames": false,
+      "js": [ "js/gmail.js" ],
+      "matches": [ "*://mail.google.com/*" ],
+      "run_at": "document_start"
+   } ],
+   "content_security_policy": "script-src 'self' https://bam.nr-data.net https://js-agent.newrelic.com https://local.hsappstatic.net https://static.hsappstatic.net https://app.hubspot.com https://talkgadget.google.com/talkgadget/channel.js https://cdn.ravenjs.com/1.1.11/jquery/raven.min.js; object-src 'self'; frame-src 'self' https://local.hubspot.com https://app.hubspot.com https://app.hubspotqa.com https://local.hsappstatic.net https://static.hsappstatic.net",
+   "description": "Email tracking, CRM for Gmail, and sales productivity tools in your inbox",
+   "icons": {
+      "128": "img/logo-128-webstore.png",
+      "16": "img/hubspot-logo-16.png",
+      "48": "img/hubspot-logo-48.png"
+   },
+   "incognito": "not_allowed",
+   "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCy3Q+mkvWtZ5T9CtCqYcNpgis61iS+l1FePEuleagnaIoon0OnAVAGa08ASJ9ugRypvAot09pvVKu2YyC1AXxPcjbpkJMMWOwXhevwMu96ndojXu3MVI75GRq8+GSjYojC9vuqgjj2c34hPKcTCAaHq9eNlLnrJCl500SD21+f4QIDAQAB",
+   "manifest_version": 2,
+   "name": "HubSpot Sales",
+   "optional_permissions": [ "clipboardRead", "clipboardWrite", "management" ],
+   "permissions": [ "tabs", "notifications", "cookies", "storage", "background", "webRequest", "webRequestBlocking", "*://*.hubspot.com/*", "*://*.hubspotqa.com/*", "*://*.hubapi.com/*", "*://*.hubapiqa.com/*", "*://mail.google.com/*", "*://*.googleusercontent.com/*" ],
+   "short_name": "HubSpot Sales",
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "2.9.0.3718",
+   "web_accessible_resources": [ "js/*.js.map", "img/*" ]
+}

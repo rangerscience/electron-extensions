@@ -1,0 +1,208 @@
+{
+  "client-app-interaction": {
+    "name": "client-app-interaction",
+    "class": "interaction",
+    "properties": {
+      "action": "string",
+      "what_value": {
+        "type": "number",
+        "isOptional": true,
+        "description": "Tracks value associated with given action"
+      },
+      "what_value_str": {
+        "type": "string",
+        "isOptional": true,
+        "description": "Tracks string value associated with given action"
+      },
+      "notificationAgeMinutes": {
+        "type": "number",
+        "isOptional": true,
+        "description": "We track notification age minutes as both an interaction and usage events"
+      }
+    },
+    "meta": {
+      "description": "No description available. Please change this.",
+      "yamlSrc": {
+        "packageName": "SignalsExtension",
+        "packageVersion": "static-2.297",
+        "relativePath": "events.yaml"
+      },
+      "database": "product"
+    },
+    "namespace": "clients"
+  },
+  "extension-show-notification": {
+    "name": "extension-show-notification",
+    "class": "usage",
+    "properties": {
+      "notificationAgeMinutes": "number",
+      "notificationSource": "string",
+      "isFromOnboarding": {
+        "type": "boolean",
+        "isOptional": false,
+        "description": "True if notification originated from onboarding like coolrobot or @setup.hubspot.com"
+      }
+    },
+    "meta": {
+      "description": "No description available. Please change this.",
+      "yamlSrc": {
+        "packageName": "SignalsExtension",
+        "packageVersion": "static-2.297",
+        "relativePath": "events.yaml"
+      },
+      "database": "product"
+    },
+    "namespace": "clients"
+  },
+  "extension-show-first-notification": {
+    "name": "extension-show-first-notification",
+    "class": "activation",
+    "meta": {
+      "description": "First notification shown to the user.",
+      "yamlSrc": {
+        "packageName": "SignalsExtension",
+        "packageVersion": "static-2.297",
+        "relativePath": "events.yaml"
+      },
+      "database": "product"
+    },
+    "namespace": "clients"
+  },
+  "extension-clicked-first-notification": {
+    "name": "extension-clicked-first-notification",
+    "class": "activation",
+    "meta": {
+      "description": "First notification the user clicks",
+      "yamlSrc": {
+        "packageName": "SignalsExtension",
+        "packageVersion": "static-2.297",
+        "relativePath": "events.yaml"
+      },
+      "database": "product"
+    },
+    "namespace": "clients"
+  },
+  "extension-show-self-notification": {
+    "name": "extension-show-self-notification",
+    "class": "usage",
+    "meta": {
+      "description": "No description available. Please change this.",
+      "yamlSrc": {
+        "packageName": "SignalsExtension",
+        "packageVersion": "static-2.297",
+        "relativePath": "events.yaml"
+      },
+      "database": "product"
+    },
+    "namespace": "clients"
+  },
+  "update-extension": {
+    "name": "update-extension",
+    "class": "interaction",
+    "properties": {
+      "action": "string",
+      "version": "string"
+    },
+    "meta": {
+      "description": "No description available. Please change this.",
+      "yamlSrc": {
+        "packageName": "SignalsExtension",
+        "packageVersion": "static-2.297",
+        "relativePath": "events.yaml"
+      },
+      "database": "product"
+    },
+    "namespace": "clients"
+  },
+  "simulated-remote-asset-update-triggered": {
+    "name": "simulated-remote-asset-update-triggered",
+    "class": "interaction",
+    "properties": {
+      "updateType": "string"
+    },
+    "meta": {
+      "description": "No description available. Please change this.",
+      "yamlSrc": {
+        "packageName": "SignalsExtension",
+        "packageVersion": "static-2.297",
+        "relativePath": "events.yaml"
+      },
+      "database": "product"
+    },
+    "namespace": "clients"
+  },
+  "pageview": {
+    "name": "pageview",
+    "class": "view",
+    "properties": {
+      "screen": {
+        "type": "string",
+        "isOptional": true,
+        "description": "Tracks screen viewed"
+      }
+    },
+    "meta": {
+      "description": "No description available. Please change this.",
+      "yamlSrc": {
+        "packageName": "sales-clients-common",
+        "packageVersion": "static-1.3151",
+        "relativePath": "events.yaml"
+      }
+    },
+    "namespace": "clients"
+  },
+  "wizard-view": {
+    "name": "wizard-view",
+    "class": "view",
+    "properties": {
+      "action": "string",
+      "screen": "string",
+      "subscreen": {
+        "type": "string",
+        "isOptional": true,
+        "description": "Subview of a wizard step"
+      }
+    },
+    "meta": {
+      "description": "No description available. Please change this.",
+      "yamlSrc": {
+        "packageName": "sales-clients-common",
+        "packageVersion": "static-1.3151",
+        "relativePath": "events.yaml"
+      }
+    },
+    "namespace": "clients"
+  },
+  "wizard-interaction": {
+    "name": "wizard-interaction",
+    "class": "interaction",
+    "properties": {
+      "action": "string",
+      "subAction": {
+        "type": "string",
+        "isOptional": true,
+        "description": "Classification of an interaction/action - for example, submit > completed"
+      },
+      "screen": "string",
+      "subscreen": {
+        "type": "string",
+        "isOptional": true,
+        "description": "Subview of a wizard step"
+      },
+      "what_value_str": {
+        "type": "string",
+        "isOptional": true,
+        "description": "Value specific to the action"
+      }
+    },
+    "meta": {
+      "description": "No description available. Please change this.",
+      "yamlSrc": {
+        "packageName": "sales-clients-common",
+        "packageVersion": "static-1.3151",
+        "relativePath": "events.yaml"
+      }
+    },
+    "namespace": "clients"
+  }
+}

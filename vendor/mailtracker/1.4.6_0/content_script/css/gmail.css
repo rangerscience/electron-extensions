@@ -1,0 +1,250 @@
+/* Status dropdown */
+
+.inboxsdk__button_icon {
+  cursor: default;
+}
+
+.inboxsdk__menuContent {
+  background: none !important;
+  border: 0 !important;
+}
+
+.inboxsdk__menu {
+  background-color: rgba(0, 0, 0, 0.9) !important;
+  border-radius: 3px !important;
+  box-shadow: none !important;
+}
+
+.hunter_status_dropdown {
+  color: #fff;
+  font-size: 12px;
+  font-family: "Google Sans", "Open Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.hunter_status_title {
+  padding: 12px 15px;
+  font-weight: 600;
+}
+
+.hunter_status_details {
+  padding: 0 15px 12px 15px;
+}
+
+.hunter_status_details p {
+  margin: 8px 0;
+}
+
+.hunter_status_details p:first-child {
+  margin-top: 0;
+}
+
+.hunter_status_details p:last-child {
+  margin-bottom: 0;
+}
+
+.hunter_status_device {
+  float: right;
+  color: #ddd;
+}
+
+.hunter_status_device .fa-mobile {
+  font-size: 18px;
+}
+
+.hunter_status_device .fa-tablet {
+  font-size: 16px;
+}
+
+.hunter_status_time {
+  margin-right: 40px;
+}
+
+/* Conversation sidebar */
+
+.addon_sidebar div[data-app-name=MailTracker] {
+  display: none;
+}
+
+#hunter_conversation_sidebar {
+  font-family: "Google Sans", "Open Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#hunter_conversation_header {
+  margin: 0 -20px 30px;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+#hunter_conversation_header img {
+  height: 22px;
+}
+
+#hunter_conversation_status {
+  font-weight: 600;
+  font-size: 14px;
+  margin: 0 0 25px 0;
+}
+
+.hunter_conversation_blank_status {
+  color: #999;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.hunter_conversation_history {
+  font-size: 12px;
+}
+
+.hunter_conversation_history p {
+  margin: 13px 0;
+  display: none;
+}
+
+.hunter_conversation_device {
+  float: right;
+  opacity: 0.7;
+}
+
+.hunter_conversation_device .fa-mobile {
+  font-size: 18px;
+}
+
+.hunter_conversation_device .fa-tablet {
+  font-size: 16px;
+}
+
+.hunter_conversation_subtitle {
+  display: none;
+  color: #777;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 11px;
+  margin: 25px 0 15px;
+}
+
+.hunter_conversation_open:nth-child(-n+5),
+.hunter_conversation_click:nth-child(-n+5) {
+  display: block;
+}
+
+#hunter_conversation_opens_more,
+#hunter_conversation_clicks_more {
+  color: #777;
+  cursor: pointer;
+  display: none;
+}
+
+#hunter_conversation_opens_more .fa,
+#hunter_conversation_clicks_more .fa {
+  color: #999;
+}
+
+.hunter_conversation_time_precise {
+  opacity: 0;
+  margin-left: 5px;
+  font-size: 10px;
+  color: #777;
+  transition: opacity .3s ease;
+}
+
+.hunter_conversation_open:hover .hunter_conversation_time_precise {
+  opacity: 1;
+}
+
+
+/* Popup to connect the Google account */
+
+#hunter_popup_container {
+  font-family: "Google Sans", "Open Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 40px 40px 30px 40px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+#hunter_popup_close {
+  float: right;
+  color: #ccc;
+  font-size: 30px;
+  margin: -30px -20px 0 0;
+}
+
+#hunter_popup_close:hover {
+  cursor: pointer;
+  color: #aaa;
+}
+
+.hunter_popup_logo {
+  height: 28px;
+  display: block;
+  margin: 0px auto 40px auto;
+}
+
+#hunter_popup_container h1 {
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#hunter_popup_container h1 strong {
+  font-weight: 600;
+}
+
+#hunter_popup_container a {
+  border: 0;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 3px;
+  transition: background-color 200ms ease-in-out;
+  display: inline-block;
+  font-size: 17px;
+  padding: 18px 25px;
+  font-weight: 600;
+  background-color: #ff5722;
+  color: #fff;
+}
+
+#hunter_popup_container p {
+  line-height: 24px;
+  margin-bottom: 20px;
+}
+
+#hunter_popup_container a:hover,
+#hunter_popup_container a:active,
+#hunter_popup_container a:focus {
+  background-color: #ee3900;
+}
+
+.hunter_later_links {
+  margin-top: 30px;
+  font-size: 14px;
+}
+
+.hunter_later_links span {
+  margin: 0 5px;
+  color: #999;
+  transition: color 200ms ease-in-out;
+}
+
+.hunter_later_links span:hover {
+  color: #333;
+  cursor: pointer;
+}
+
+.hunter_feedback_buttons {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.hunter_popup_screenshot_onboarding {
+  width: 300px;
+  border-radius: 5px;
+}

@@ -1,0 +1,25 @@
+{
+   "author": "Clearbit",
+   "background": {
+      "persistent": false,
+      "scripts": [ "background.js" ]
+   },
+   "content_scripts": [ {
+      "js": [ "inboxsdk.js", "content.js" ],
+      "matches": [ "https://mail.google.com/*", "https://inbox.google.com/*" ],
+      "run_at": "document_end"
+   } ],
+   "description": "Find employee email addresses for any company and display useful contextual data for anyone who emails you.",
+   "homepage_url": "https://connect.clearbit.com",
+   "icons": {
+      "128": "icon128.png",
+      "48": "icon48.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAom/28FHOZjhqXzaxZfLVyc2Kuw8zz4XmByfP4caLNMhv5nmUxvVnFp603h34TvCn/28neEnZTrC+RmjrEzsycSeysAA1XWls2BB9FAZjanVgRrg/MA68ylYoy+3Mvr+nHMw6iDeptrZvZMyhX+64U9a3dFiHpBdvSbZ6qZDSpDDIibZCLNBCUUQM7rNlNslRc96j+dZx+xLTvq8ik1zcu6Su44rn7ahC6F2hUrJHwzWlkjxRzDDElwdZPb6pVHyo37g0k/OuhsDfe9RQuTH0575ilWK4fNC8KNM9CsxpF/wIm6ajzAV+CXg0zRgiXHDTVZCcy1XGf3DIOJm94qt0EQIDAQAB",
+   "manifest_version": 2,
+   "name": "Clearbit Connect - Supercharge Gmail™",
+   "permissions": [ "https://mail.google.com/", "https://inbox.google.com/", "https://*.clearbit.com/" ],
+   "short_name": "Clearbit Connect",
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "2.1.1"
+}

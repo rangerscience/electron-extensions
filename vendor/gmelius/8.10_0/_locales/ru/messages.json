@@ -1,0 +1,10 @@
+{
+   "extDescription": {
+      "description": "Extension description.",
+      "message": "Make your Gmail inbox smarter: email tracking, shared inbox, shared labels, automated sequences, CRM for Gmail, email notes, kanban boards, and more…"
+   },
+   "extName": {
+      "description": "Extension name.",
+      "message": "Shared Inbox & CRM for Gmail | Gmelius"
+   }
+}

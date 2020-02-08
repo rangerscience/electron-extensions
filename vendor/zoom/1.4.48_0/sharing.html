@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Permission Request for Zoom</title>
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.css">
+	<link type="text/css" rel="stylesheet" href="css/options.css">
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/sharing.js"></script>
+</head>
+
+<body style="background-color: white;">
+<a class="sr-only" href="#content">Skip to main</a>
+<div id="content_success_msg" class="alert alert-success" role="alert" style="z-index:100;display:none;"></div>
+
+<div id="content_container" role="main" style="min-height: 240px;text-align:center;">
+
+	<div style="border-bottom: none" class="content-header">
+		<p>Zoom needs additional permission to start sharing</p>
+	</div>
+
+	<div><p style="padding:0;">To start sharing, click 'Continue', then click 'Allow' when prompted by your browser.</p></div>
+
+	<div class="content-footer clearfix" style="text-align: center;">
+		<div class="controls col-md-12">
+			<button id="permission_cancel" class="btn btn-cancel">Cancel</button>
+			<button id="permission_submit" class="btn btn-save">Continue</button>
+		</div>
+	</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+{
+   "author": "Mixmax, Inc.",
+   "background": {
+      "scripts": [ "src/assets/lib/aws-sdk-v2.437.0.js", "src/assets/lib/jquery-2.1.4.js", "src/assets/lib/underscore-1.8.3.js", "src/assets/lib/raven-3.3.0.js", "src/assets/lib/Environment.js", "src/assets/lib/raven-config.js", "src/assets/lib/error.js", "src/assets/lib/lz-string-1.4.4.js", "src/background.js" ]
+   },
+   "browser_action": {
+      "default_icon": "src/assets/img/icon.png",
+      "default_title": "Mixmax"
+   },
+   "content_scripts": [ {
+      "all_frames": true,
+      "js": [ "src/content/globals.js" ],
+      "matches": [ "\u003Call_urls>" ],
+      "run_at": "document_start"
+   }, {
+      "js": [ "src/content/pageInterop.js" ],
+      "matches": [ "*://mail.google.com/*" ],
+      "run_at": "document_end"
+   }, {
+      "all_frames": true,
+      "js": [ "src/assets/lib/jquery-2.1.4.js", "src/assets/lib/raven-3.3.0.js", "src/assets/lib/Environment.js", "src/assets/lib/raven-config.js", "src/assets/lib/error.js", "src/content/ExtensionMessageBus.js" ],
+      "matches": [ "*://*.mixmax.com/*" ],
+      "run_at": "document_start"
+   }, {
+      "all_frames": true,
+      "exclude_matches": [ "*://*.mixmax.com/*" ],
+      "js": [ "src/assets/lib/jquery-2.1.4.js" ],
+      "matches": [ "\u003Call_urls>" ],
+      "run_at": "document_end"
+   }, {
+      "exclude_matches": [ "*://*.mixmax.com/*" ],
+      "js": [ "src/assets/lib/raven-3.3.0.js", "src/assets/lib/Environment.js", "src/assets/lib/raven-config.js", "src/assets/lib/error.js", "src/content/ExtensionMessageBus.js", "src/content/app.js" ],
+      "matches": [ "\u003Call_urls>" ],
+      "run_at": "document_end"
+   }, {
+      "all_frames": true,
+      "js": [ "src/assets/lib/raven-3.3.0.js", "src/assets/lib/Environment.js", "src/assets/lib/raven-config.js", "src/assets/lib/error.js", "src/content/app.js" ],
+      "matches": [ "*://*.linkedin.com/sales/widget/*" ],
+      "run_at": "document_end"
+   }, {
+      "all_frames": true,
+      "exclude_matches": [ "*://mail.google.com/*" ],
+      "js": [ "src/content/mailTo.js", "src/content/callTo.js" ],
+      "matches": [ "\u003Call_urls>" ],
+      "run_at": "document_idle"
+   } ],
+   "description": "Email tracking and productivity suite for Gmail.",
+   "homepage_url": "https://mixmax.com",
+   "icons": {
+      "128": "src/assets/img/icon.png",
+      "16": "src/assets/img/icon.png",
+      "48": "src/assets/img/icon.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoYQ79kFdYz3gjTbz/YPkGBaaEOsP8NT//Jugc88JGj9/v92YHzze0y9tApTkk8Qv3DlrAXXnigTiCfNnCkRY66evHZ4Jf8j+Q9E5P/sRTp9J73dtQRcB4Fiz7QgJYnviVXckbAQMLUSCBbUXZeav/xEvmrxNX6Tr16sYBSXB06Ll4kkH8V7hDvqZzOFHlEI7cduMI+I1h6ip3yZ9aSkPD/OlRjGaqM299gonGw0ntrv4LUjvyJiRRvviceWO1BPXZLCoKcqIq5fFeGhymq4hN2RMG5c7YvJEqlsJyT+TvBaGNp/zFg+7uKIOk48y2JV3vKaG7rR8d+hBU7+SNnOHnQIDAQAB",
+   "manifest_version": 2,
+   "name": "Mixmax: Email Tracking, Templates, Mail Merge",
+   "permissions": [ "tabs", "notifications", "storage", "webRequest", "webRequestBlocking", "unlimitedStorage", "*://mail.google.com/*", "*://*.googleusercontent.com/*", "*://*.mixmax.com/*" ],
+   "short_name": "Mixmax",
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "4.7.3",
+   "web_accessible_resources": [ "src/iframeProxy/proxy.html" ]
+}

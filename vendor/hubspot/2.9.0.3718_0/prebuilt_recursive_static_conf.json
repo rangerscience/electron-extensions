@@ -1,0 +1,46 @@
+{
+  "name": "SignalsExtension",
+  "majorVersion": "2",
+  "deps": {
+    "HeadJS": "static-2.151",
+    "jasmine": "static-3.55",
+    "jasmine-runner": "static-1.27",
+    "ably": "static-1.11",
+    "ably-hubspot-js": "static-1.37",
+    "common_assets": "static-2.216",
+    "enviro": "static-3.75",
+    "hub-http": "static-1.201",
+    "hub-http-contrib": "static-1.80",
+    "I18n": "static-7.467",
+    "immutable": "static-2.6",
+    "jquery-libs": "static-1.48",
+    "q": "static-6.18",
+    "raven": "static-3.6",
+    "raven-hubspot": "static-1.88",
+    "sales-clients-common": "static-1.3151",
+    "urlinator": "static-1.71",
+    "usage-tracker": "static-1.385",
+    "usage-tracker-core": "static-1.234"
+  },
+  "devDeps": {
+    "HeadJS": "2",
+    "jasmine": "3",
+    "jasmine-runner": "1"
+  },
+  "crossoriginScriptBundles": true,
+  "coffeescriptVersion": "1.9.1",
+  "sassVersion": "node-sass",
+  "babel": {
+    "default": {
+      "moduleRoot": "SignalsExtension",
+      "sourceRoot": "js",
+      "generateDottedModuleIds": false
+    }
+  },
+  "jasmine": {
+    "specRunner": "SignalsExtension/static/test/test.html"
+  },
+  "build": "2.297",
+  "runtimeDeps": {},
+  "publishable": true
+}

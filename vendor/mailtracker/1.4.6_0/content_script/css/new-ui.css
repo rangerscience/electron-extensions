@@ -1,0 +1,33 @@
+/* Connexion popup */
+
+#hunter_popup_container h1 strong {
+  font-weight: 500;
+}
+
+#hunter_popup_container a {
+  font-weight: 500;
+}
+
+
+/* Conversation sidebar */
+
+#hunter_conversation_sidebar {
+  padding: 0 20px;
+}
+
+#hunter_conversation_header {
+  background: #fafafa;
+}
+
+#hunter_conversation_status {
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.hunter_conversation_history {
+  font-size: 13px;
+}
+
+.hunter_conversation_subtitle {
+  font-weight: 500;
+}

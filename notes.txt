@@ -1,0 +1,80 @@
+TODOs:
+
+- some apis take a responseCallback, and I generally don't, but the extensions we're supporting as yet don't use that feature
+- the global EXTENSION_ID is a total kludge
+- need a way to send an "install" message
+- could redesign things to use ports under everything (each extension gets a port whose ID is the extensionID)
+- tabs.sendMessage: It's unclear whether or not this is supposed to only send to contentScripts of the same extension; I'm assuming that's what should happen.
+- There's stuff about whether or not things should run in frames, or not.
+
+LastPass -
+Wow there's a lot here
+
+notifications, windows, tabs, privacy, permissions, browserAction, webRequest, management, i18n, omnibox (??), history, extension.connectNative, contextMenus, *.getBackgroundPage
+
+Looks extremely difficult (a lot, and then native stuff)
+
+Clearbit -
+
+chrome.runtime.setUninstallURL("https://connect.clearbit.com/uninstall"), chrome.runtime.onInstalled.addListener(t => {
+    "install" == t.reason && chrome.tabs.create({
+        url: "https://connect.clearbit.com/start"
+    })
+});
+
+It's doing some things on install / uninstall. This'll take some product design.
+
+sendMessage sometimes takes the extensionID... other times, it's expecting the runtime to know it. Great :/
+So, ClearBit will require some rearchitecting and some deep tech stuff... or some direct code modification. Honestly the latter, it's way simpler.
+It'll take some additional investigating with it's checking of is-extension in the content scripts. But they can be modified directly, which is the whole point of the vendoring!
+
+grammarly -
+
+A lot of calls. A few bunch to tabs, some to browserAction, some to cookies, notifications, "management", some sign-in stuff...
+It's large, but looks straight forward
+
+zoom -
+
+onMessage, tabs, onInstalled, extension, desktopCapture (!! - wait, there's an electron API for this), content-script side extension awareness, permissions, i18n
+Looks moderate
+
+hubspot -
+runtime.reload, runtime.id, runtime.onInstalled, runtime.onUpdateAvailable, runtime.requestUpdateCheck, storage.sync, extensions.getURL, content-script extension awareness,
+Looks difficult
+
+gmelius -
+extension, runtime.reload, runtime.onInstalled, webRequest.onBeforeRequest, runtime.setUninstallURL, runtime.onUpdateAvailable, runtime.onSuspend, tabs, permissions
+
+Looks doable!
+
+mailtracker -
+runtime.onInstalled, storage.sync, runtime.getURL
+
+Looks doable!
+
+boomerang -
+management, tabs, extension awareness
+
+Looks extremely doable!
+
+
+mixmax -
+storage.onChanged, chrome.app.runtime, exec, tabs, browserAction, windows, notifications, webrequest
+
+Looks possible
+
+
+================
+Boomerang
+Download: https://s3.amazonaws.com/BoomerangForGmail/bookmarklet/b4g_bookmarklet.js
+
+chrome.tabs.sendMessage(senderId, {
+chrome.management.uninstall("mdkdbdadolokifeomchamhifddohomii");
+chrome.management.getAll(function(extensions) {
+chrome.tabs.query({
+chrome.tabs.sendMessage(tabs[0].id, {
+chrome.runtime.onInstalled.addListener(function(details) {
+chrome.tabs.create({
+chrome.tabs.query(queryInfo, function(tabs) {
+chrome.tabs.create({
+chrome.extension.sendMessage({ -> this is only used to send the uninstall message, so we're fine (it's also deprecated)
