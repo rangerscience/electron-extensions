@@ -21,7 +21,7 @@ function createWindow () {
   })
 
   //win.loadURL('https://www.reddit.com/r/rational/submit')
-  win.loadURL('https://drive.google.com/drive/u/0/my-drive')
+  win.loadURL('https://gmail.com/')
 
   win.webContents.openDevTools()
 
@@ -46,7 +46,7 @@ function createWindow () {
   // const mixmax      = LoadExtension("vendor/mixmax/4.7.3_0/", 'ocpljaamllnldhepankaeljmeeeghnid')
   //console.log(html)
 
-  boomerang(win)
+  boomerang(win.webContents)
 
   //config.startBackgroundPage(manifest)
 
