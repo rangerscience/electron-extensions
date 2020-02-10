@@ -67,9 +67,9 @@ class MockBrowserWindow {
       executeJavaScript: jest.fn(),
       executeJavaScriptInIsolatedWorld: jest.fn(),
       send: jest.fn(),
-      on: (event, callback) => {
+      on: jest.fn((event, callback) => {
         if(event != 'context-menu') { callback() }
-      },
+      }),
     }
 
     this.loadURL = jest.fn()

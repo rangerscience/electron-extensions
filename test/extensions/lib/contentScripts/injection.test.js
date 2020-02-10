@@ -130,13 +130,7 @@ describe("InjectExtensionBuilder", () => {
 
       injector(window.webContents)
 
-      expect(window.webContents.executeJavaScriptInIsolatedWorld).toHaveBeenCalledWith(
-        worldId, `EXTENSION_ID = ${manifest.extensionId}`
-      )
-
-      expect(window.webContents.executeJavaScriptInIsolatedWorld).toHaveBeenCalledWith(
-        worldId, expect.any(String)
-      )
+      expect(window.webContents.on).toHaveBeenCalled()
     })
 
     test("does not injects scripts when does not URL matches", () => {

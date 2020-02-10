@@ -5,18 +5,8 @@ const { config, ExtensionInit } = require("../../../../lib/extensions/lib/conten
 const _ = {}
 
 describe("ExtensionInit", () => {
-  process.once = jest.fn( (event, callback) => callback() )
-
-  test("injects chrome api", () => {
-    global.chrome = { foo: "bar" }
+  test("setup a handler", () => {
     ExtensionInit("ipcChannel")
-    expect(global.chrome.runtime).toBeDefined()
-    expect(global.chrome.foo).toBeDefined()
-  })
-
-  test("it creates global.chrome if not exist", () => {
-    delete global.chrome
-    ExtensionInit("ipcChannel")
-    expect(global.chrome).toBeDefined()
+    expect(ipcRenderer.on).toHaveBeenCalled()
   })
 })
